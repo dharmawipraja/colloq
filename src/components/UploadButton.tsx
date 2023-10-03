@@ -13,7 +13,7 @@ import {
 import { Button } from './ui/button'
 import { Progress } from './ui/progress'
 import { useToast } from './ui/use-toast'
-import { useUpload } from '@/lib/upload'
+import { useUploadThing } from '@/lib/upload'
 import { trpc } from '@/app/_trpc/client'
 
 const UploadDropzone = ({
@@ -29,9 +29,7 @@ const UploadDropzone = ({
     useState<number>(0)
   const { toast } = useToast()
 
-  const { startUpload } = useUpload(
-    isSubscribed ? 'proPlanUploader' : 'freePlanUploader'
-  )
+  const { startUpload } = useUploadThing('pdfUploader')
 
   const { mutate: startPolling } = trpc.getFile.useMutation(
     {
