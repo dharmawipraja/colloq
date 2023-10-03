@@ -65,7 +65,6 @@ const UploadDropzone = ({
 
         const progressInterval = startSimulatedProgress()
 
-        // handle file uploading
         const res = await startUpload(acceptedFile)
 
         if (!res) {
