@@ -17,6 +17,7 @@ export async function POST(request: Request) {
       process.env.STRIPE_WEBHOOK_SECRET || ''
     )
   } catch (err) {
+    console.log('err', err)
     return new Response(
       `Webhook Error: ${
         err instanceof Error ? err.message : 'Unknown Error'
@@ -33,6 +34,8 @@ export async function POST(request: Request) {
       status: 200,
     })
   }
+
+  console.log('session', session)
 
   if (event.type === 'checkout.session.completed') {
     const subscription =
